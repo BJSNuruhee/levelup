@@ -1,21 +1,41 @@
 package com.example.demo.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.TestDto;
 
-@RestController // REST 규약에 맞춰 API name 설정 필요
+@RestController
+@RequestMapping("/api") // api로 시작하는 클라이언트의 요청을 처리한다.
 public class MainController {
 	
-	@GetMapping("/get/test/data") // REST하게 API name 설정
-	public TestDto test(TestDto dto) { // DB와 controller 사이에서 데이터 전달하는 model 객체
-		dto.setName("test 문자열 입니다아.");
-		return dto; // Model data를 리턴한다.
-	}
+	@GetMapping("/get/test/data") 
+	public TestDto test(TestDto dto) {
+		dto.setName("스프링부트와 vue 연동하기");
+		return dto;
+	};
 	
+	@PostMapping("/post/test/data")
+	public String postData(@RequestBody TestDto dto) {
+		System.out.println("Received data: " + dto.getName());
+		return "전송 받기 성공";
+	}
 }
 
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////
 /* MVC 과정
 1. Client가 httpRequest를 내장 톰캣을 거쳐 DispatcherServlet에게 요청한다
 

@@ -1,39 +1,41 @@
 <template>
   <div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </table>
+    <button @click="axiosGet">백엔드로 get요청</button>
+    <button @click="axiosPost">백엔드로 post요청</button>
+  </div>
+  <div>
+    <h4>get data 확인 : {{ getData }}</h4>
+    <h4>post 전송 성공했나? : {{ postData }}</h4>
   </div>
 </template>
 
 <script setup>
+import axios from 'axios';
+import { ref } from 'vue';
 
+const getData = ref();
+const postData = ref();
+const postRequest = {
+  name: "비제이시스템즈",
+}
+
+const axiosGet = () => {
+  axios.get('/api/get/test/data')
+  .then(res => {
+    getData.value = res.data
+  }).catch(err => {
+    console.log(err)  
+  }); 
+};
+
+const axiosPost = () => {
+  axios.post('/api/post/test/data', postRequest)
+  .then(res => {
+    postData.value = res.data
+  }).catch(err => {
+    postData.value = err
+  })
+};
 </script>
 
 <style lang="scss" scoped></style>
