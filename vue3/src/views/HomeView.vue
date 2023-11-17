@@ -10,7 +10,8 @@
 </template>
 
 <script setup>
-import axios from 'axios';
+// import axios from 'axios';
+import axiosInstance from '@/api/index.js';
 import { ref } from 'vue';
 
 const getData = ref();
@@ -20,7 +21,7 @@ const postRequest = {
 }
 
 const axiosGet = () => {
-  axios.get('/api/get/test/data')
+  axiosInstance.get('/get/test/data')
   .then(res => {
     getData.value = res.data
   }).catch(err => {
@@ -29,7 +30,7 @@ const axiosGet = () => {
 };
 
 const axiosPost = () => {
-  axios.post('/api/post/test/data', postRequest)
+  axiosInstance.post('/post/test/data', postRequest)
   .then(res => {
     postData.value = res.data
   }).catch(err => {
