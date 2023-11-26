@@ -7,6 +7,7 @@
     <h4>get data 확인 : {{ getData }}</h4>
     <h4>post 전송 성공했나? : {{ postData }}</h4>
   </div>
+  <h1></h1>
 </template>
 
 <script setup>

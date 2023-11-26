@@ -9,8 +9,8 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
-  // mode: 'development', // 백엔드 8080
-  mode: 'production', // 백엔드 9000
+  mode: 'development', // 백엔드 8080
+  // mode: 'production', // 백엔드 9000
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
