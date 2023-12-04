@@ -7,14 +7,18 @@
     <h4>get data 확인 : {{ getData }}</h4>
     <h4>post 전송 성공했나? : {{ postData }}</h4>
   </div>
-  <h1></h1>
+  <hr>
+  <button @click="save(addadd, postRequest)">김앤장</button>
+  <button @click="save(bddbdd, reqqq)">김앤장22222222</button>
 </template>
 
 <script setup>
 // import axios from 'axios';
 import axiosInstance from '@/api/index.js';
 import { ref } from 'vue';
+import { useAdd } from '@/composables/app.js'
 
+const { addadd, reqqq, bddbdd } = useAdd();
 const getData = ref();
 const postData = ref();
 const postRequest = {
@@ -37,6 +41,18 @@ const axiosPost = () => {
   }).catch(err => {
     postData.value = err
   })
+};
+
+const add = (request) => {
+  console.log("ad Function a called with request:", request);
+};
+
+const bdd = (request) => {
+  console.log("bdddddddddd Function a called with request:", request);
+};
+
+const save = async (api, postRequest) => {
+  await api(postRequest)
 };
 </script>
 
