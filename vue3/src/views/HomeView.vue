@@ -17,6 +17,7 @@
 import axiosInstance from '@/api/index.js';
 import { ref } from 'vue';
 import { useAdd } from '@/composables/app.js'
+import axios from 'axios';
 
 const { addadd, reqqq, bddbdd } = useAdd();
 const getData = ref();
@@ -25,8 +26,17 @@ const postRequest = {
   name: "비제이시스템즈",
 }
 
+// const axiosGet = () => {
+//   axiosInstance.get('/get/test/data')
+//   .then(res => {
+//     getData.value = res.data
+//   }).catch(err => {
+//     console.log(err)  
+//   }); 
+// };
+
 const axiosGet = () => {
-  axiosInstance.get('/get/test/data')
+  axios.get('/api/get/test/data')
   .then(res => {
     getData.value = res.data
   }).catch(err => {
@@ -34,8 +44,17 @@ const axiosGet = () => {
   }); 
 };
 
+// const axiosPost = () => {
+//   axiosInstance.post('/post/test/data', postRequest)
+//   .then(res => {
+//     postData.value = res.data
+//   }).catch(err => {
+//     postData.value = err
+//   })
+// };
+
 const axiosPost = () => {
-  axiosInstance.post('/post/test/data', postRequest)
+  axios.post('/api/post/test/data', postRequest)
   .then(res => {
     postData.value = res.data
   }).catch(err => {
@@ -43,13 +62,13 @@ const axiosPost = () => {
   })
 };
 
-const add = (request) => {
-  console.log("ad Function a called with request:", request);
-};
+// const add = (request) => {
+//   console.log("ad Function a called with request:", request);
+// };
 
-const bdd = (request) => {
-  console.log("bdddddddddd Function a called with request:", request);
-};
+// const bdd = (request) => {
+//   console.log("bdddddddddd Function a called with request:", request);
+// };
 
 const save = async (api, postRequest) => {
   await api(postRequest)
