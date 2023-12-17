@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -61,6 +63,34 @@ public class TestController {
 	public String memLogout(HttpSession session) {
 		session.invalidate();
 		return "1";
+	}
+	
+	// 쿠키 로그인 기능 구현
+	@PostMapping("/post/user/cookieLogin")
+	public String memCookieLogin(@RequestBody User vo, HttpServletResponse response) {
+		User mvo = userMapper.memLogin(vo);
+		if(mvo != null) { // 로그인 성공
+			//쿠키에 시간 정보를 주지 않으면 세션 쿠키가 된다. (브라우저 종료시 모두 종료)
+			Cookie cookie = new Cookie("memId", String.valueOf(vo.getUserId()));
+			cookie.setMaxAge(60 * 60); // 1시간
+			response.addCookie(cookie);
+			return "good";
+		} else { // 로그인 실패
+			return "bad";
+		}
+	}
+	
+	// 쿠키 로그아웃
+	@PostMapping("/post/user/cookieLogout")
+	public String memCookieLogout(HttpServletResponse response) {
+		expiredCookie(response, "memId");
+		return "1";
+	}
+	
+	private void expiredCookie(HttpServletResponse response, String cookieName) {
+	    Cookie cookie = new Cookie(cookieName, null);
+	    cookie.setMaxAge(0);
+	    response.addCookie(cookie);
 	}
 	
 	

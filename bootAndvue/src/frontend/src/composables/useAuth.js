@@ -9,9 +9,27 @@ const error = ref();
 const baseUrl = '/api'
 const userIdCheck = ref();
 
-  // 로그인
+  // 세션 로그인
+  // const login = async (id, pw) => {
+  //   await axios.post(`${baseUrl}/post/user/login`, {
+  //     userId: id,
+  //     userPw: pw
+  //   })
+  //   .then(res => {
+  //     if(res.data === 'bad') {
+  //       session.value = null
+  //     } else {
+  //       session.value = res.data
+  //     }
+  //   }).catch(err => {
+  //     error.value = err
+  //     console.log(error.value)
+  //   })
+  // }
+  
+  // 쿠키 로그인
   const login = async (id, pw) => {
-    await axios.post(`${baseUrl}/post/user/login`, {
+    await axios.post(`${baseUrl}/post/user/cookieLogin`, {
       userId: id,
       userPw: pw
     })
@@ -27,9 +45,22 @@ const userIdCheck = ref();
     })
   }
 
-  // 로그아웃
+  // 세션 로그아웃
+  // const logout = async () => {
+  //   await axios.post(`${baseUrl}/post/user/logout`)
+  //   .then(res => {
+  //     if(session.value !== null) {
+  //       session.value = null
+  //     }
+  //   }).catch(err => {
+  //     error.value = err
+  //     console.log(error.value)
+  //   })
+  // }
+
+  // 쿠키 로그아웃
   const logout = async () => {
-    await axios.post(`${baseUrl}/post/user/logout`)
+    await axios.post(`${baseUrl}/post/user/cookieLogout`)
     .then(res => {
       if(session.value !== null) {
         session.value = null
