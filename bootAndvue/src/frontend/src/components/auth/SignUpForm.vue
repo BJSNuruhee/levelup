@@ -130,15 +130,15 @@ const signUpBtn = () => {
     return
   }
   
-  if(userIdCheck.value === 0) {
+  // if(userIdCheck.value === 0) {
     postSignUp(id.value, pw.value, email.value, phone.value);
     id.value = ''
     pw.value = ''
     email.value = ''
     phone.value = ''
-  } else {
-    alert("아이디 중복체크는 필수입니다.")
-  }
+  // } else {
+  //   alert("아이디 중복체크는 필수입니다.")
+  // }
 }
 
 const idCheck = async () => {
