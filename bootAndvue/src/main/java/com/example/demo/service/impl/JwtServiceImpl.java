@@ -19,7 +19,6 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.dto.UserDto;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.JwtService;
-import com.example.demo.service.UserService;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -58,7 +57,7 @@ public class JwtServiceImpl implements JwtService {
 
 		return builder.compact();
 	}
-
+	
 	// JWT 로그인
 	@Override
 	public ResponseEntity memJWTLogin(UserDto dto, HttpServletResponse res) {
@@ -75,7 +74,7 @@ public class JwtServiceImpl implements JwtService {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
-
+	
 	// JWT 로그인 체크 메서드
 	public Claims getClaims(String token) {
 		if (token != null && !"".equals(token)) {
@@ -114,6 +113,7 @@ public class JwtServiceImpl implements JwtService {
 		}
 		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
+	
 	
 	// 로그아웃
 	@Override

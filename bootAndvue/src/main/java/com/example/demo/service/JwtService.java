@@ -3,9 +3,11 @@ package com.example.demo.service;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.UserDto;
 
+@Service
 public interface JwtService {
 	
 	// JWT 생성
